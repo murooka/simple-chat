@@ -1,0 +1,18 @@
+<% title = 'Hello, world' %>
+<script>
+  // サーバに接続する
+  var socket = io.connect('localhost');
+  // メッセージを受けたとき
+  socket.on('chat', function(msg) {
+    $('#receiveMsg').append('<dd>' + msg + '</dd>');
+  });
+
+  function sendMsg() {
+    socket.send($('#textMsg').val());
+  }
+</script>
+
+<dl id="receiveMsg"></dl>
+
+<input type="text" id="textMsg" />
+<input type="button" id="send" onClick="javascript:sendMsg();" value="送信" />
